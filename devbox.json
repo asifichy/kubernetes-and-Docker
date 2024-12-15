@@ -1,12 +1,12 @@
 {
-    "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
-    "packages": [
-      "civo@latest",
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": [
+    "civo@latest",
     "envsubst@latest",
     "gh@latest",
     "go@latest",
     "go-task@latest",
-    "path:gcloud#google-cloud-sdk",
+    "google-cloud-sdk", 
     "gum@latest",
     "jq@latest",
     "k9s@latest",
@@ -25,18 +25,17 @@
     "yq-go@latest",
     "act@latest",
     "kubent@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "export GOBIN=$(git rev-parse --show-toplevel)/bin",
+      "export PATH=$GOBIN:$PATH",
+      "go install sigs.k8s.io/cloud-provider-kind@v0.2.0"
     ],
-    "shell": {
-      "init_hook": [
-        "export GOBIN=$(git rev-parse --show-toplevel)/bin",
-        "export PATH=$GOBIN:$PATH",
-        "go install sigs.k8s.io/cloud-provider-kind@v0.2.0"
-      ],
-      "scripts": {
-        "test": [
-          "echo \"Error: no test specified\" && exit 1"
-        ]
-      }
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
     }
   }
-  
+}
